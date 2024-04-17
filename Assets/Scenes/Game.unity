@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountToPool: 20
-  bulletPrefab: {fileID: 6592726707294606064, guid: b258df9691e6e8748aac4449fdaa8880, type: 3}
+  bulletPrefab: {fileID: 5793264021708234372, guid: 7e65cf72f30249843a599de086a5e0f6, type: 3}
 --- !u!4 &141237569
 Transform:
   m_ObjectHideFlags: 0
