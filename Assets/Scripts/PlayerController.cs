@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
                 {
                     bullet.transform.position = firePoint.position; // Colocamos el objeto en la posición
                     bullet.SetActive(true); // Activamos el objeto del pool
+                    bullet.GetComponent<PlaySFX>().PlaySFXClip(); // Reproducimos el sonido
                     Vector3 direccionImpacto = (puntoImpacto - firePoint.transform.position).normalized;
                     bullet.GetComponent<Rigidbody>().velocity = direccionImpacto * bulletSpeed;
                 }
@@ -95,6 +96,7 @@ public class PlayerController : MonoBehaviour
                 {
                     bullet.transform.position = firePoint.position; // Colocamos el objeto en la posición
                     bullet.SetActive(true); // Activamos el objeto del pool
+                    bullet.GetComponent<PlaySFX>().PlaySFXClip(); // Reproducimos el sonido
                     bullet.GetComponent<Rigidbody>().velocity = direccion * bulletSpeed;
                 }
 
