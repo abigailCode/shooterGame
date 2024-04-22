@@ -10,7 +10,7 @@ public class DestroyAfterSeconds : MonoBehaviour {
     // ------------------------------------------------------
     // Corrutina que duerme el objeto despues de N segundos
     // ------------------------------------------------------
-    IEnumerator DisableAfterNSeconds(int secondsToDisable)
+    public IEnumerator DisableAfterNSeconds(int secondsToDisable)
     {
         // Esperamos los segundos especificados
         yield return new WaitForSeconds(secondsToDisable);
