@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartGameManager : MonoBehaviour
+public class StatusGameManager : MonoBehaviour
 {
+
+    [SerializeField]  GameObject GameOverPanel;
+    [SerializeField]  GameObject GameWonPanel;
+
     private void OnEnable()
     {
         InitGame.OnGameInit += StartTimer;
         InitGame.OnGameInit += StartMovement;
         InitGame.OnGameInit += PlayMainTheme;
+        InitGame.OnGameInit += AnimateTitle;
     }
 
     private void OnDisable()
@@ -16,6 +21,7 @@ public class StartGameManager : MonoBehaviour
         InitGame.OnGameInit -= StartTimer;
         InitGame.OnGameInit -= StartMovement;
         InitGame.OnGameInit -= PlayMainTheme;
+        InitGame.OnGameInit -= AnimateTitle;
     }
 
     private void Start()
@@ -39,4 +45,27 @@ public class StartGameManager : MonoBehaviour
       
     }
 
+    void AnimateTitle()
+    {
+        GameObject.Find("Title").GetComponent<Animator>().SetBool("disappear", true);
+    }
+
+
+    void GameOver()
+    {
+        PauseGame();
+        GameOverPanel.SetActive(true);
+    }
+
+    void GameWon()
+    {
+        PauseGame();
+        GameWonPanel.SetActive(true);
+    }
+
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+    } 
 }

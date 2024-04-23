@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour {
             if (remainingTime <= 0) {
                 remainingTime = 0; // Ensure timer doesn't go negative
                 timerRunning = false; // Stop timer when it reaches 0
-               // SceneController.instance.LoadScene("GameOver");
+               GameObject.Find("Main Camera").SendMessage("GameOver");   
             }
 
             string minutes = (Mathf.Floor(Mathf.Round(remainingTime) / 60)).ToString();
