@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078027298312607128}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 831, y: 0.2, z: 488}
-  m_LocalScale: {x: 30.825762, y: 30.825762, z: 79.758575}
+  m_LocalRotation: {x: -0, y: -0.07955992, z: -0, w: 0.9968301}
+  m_LocalPosition: {x: 652, y: 0.2, z: 477}
+  m_LocalScale: {x: 10.540869, y: 30.825762, z: 79.758575}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4015916111815597458}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.127, z: 0}
 --- !u!33 &7227874021226982436
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f72d6d75185f842e498cbecf8339192c, type: 2}
+  - {fileID: 2100000, guid: 30713a051052b4d25b10f61c7c53434c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +155,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 1000
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -227,13 +227,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6824651113773829384}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 156, y: 0.2, z: 488}
-  m_LocalScale: {x: 30.825762, y: 30.825762, z: 79.758575}
+  m_LocalRotation: {x: -0, y: 0.070266075, z: -0, w: 0.9975284}
+  m_LocalPosition: {x: 428, y: 0.2, z: 480}
+  m_LocalScale: {x: 14.618887, y: 30.825762, z: 79.758575}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4015916111815597458}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 8.059, z: 0}
 --- !u!33 &4636861336393591583
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f72d6d75185f842e498cbecf8339192c, type: 2}
+  - {fileID: 2100000, guid: 30713a051052b4d25b10f61c7c53434c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
