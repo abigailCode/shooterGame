@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatusGameManager : MonoBehaviour
 {
 
     [SerializeField]  GameObject GameOverPanel;
     [SerializeField]  GameObject GameWonPanel;
+    public RawImage screenshotImage;
 
     private void OnEnable()
     {
@@ -54,18 +56,43 @@ public class StatusGameManager : MonoBehaviour
     void GameOver()
     {
         PauseGame();
-        GameOverPanel.SetActive(true);
+        screenshotImage = GameOverPanel.transform.GetChild(0).gameObject.transform.Find("Screenshot").GetComponent<RawImage>();
+        CaptureScreenshot();
+        StartCoroutine(ShowPanel(GameOverPanel));
+    }
+
+    IEnumerator ShowPanel(GameObject panel)
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        panel.SetActive(true);
     }
 
     void GameWon()
     {
         PauseGame();
-        GameWonPanel.SetActive(true);
+        screenshotImage = GameWonPanel.transform.GetChild(0).gameObject.transform.Find("Screenshot").GetComponent<RawImage>();
+        CaptureScreenshot();
+        StartCoroutine(ShowPanel(GameWonPanel));
     }
 
     void PauseGame()
     {
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
-    } 
+    }
+
+    void CaptureScreenshot()
+    {
+        string screenshotName = "screenshot.png";
+        ScreenCapture.CaptureScreenshot(screenshotName);
+        StartCoroutine(LoadScreenshot(screenshotName));
+    }
+
+    IEnumerator LoadScreenshot(string path)
+    {
+        yield return new WaitForSecondsRealtime(0.2f); 
+        Texture2D texture = new Texture2D(Screen.width, Screen.height);
+        texture.LoadImage(System.IO.File.ReadAllBytes(path));
+        screenshotImage.texture = texture;
+    }
 }

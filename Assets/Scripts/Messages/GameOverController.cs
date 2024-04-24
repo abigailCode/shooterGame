@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverController : MonoBehaviour
 {
 
     [SerializeField] string message = "";
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Target")
@@ -14,4 +16,7 @@ public class GameOverController : MonoBehaviour
             GameObject.Find("Main Camera").SendMessage(message);
         }
     }
+
+
+ 
 }

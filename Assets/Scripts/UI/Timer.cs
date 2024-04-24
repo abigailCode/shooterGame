@@ -3,9 +3,15 @@ using UnityEngine.UI;
 using TMPro;
 
 public class Timer : MonoBehaviour {
-    private float remainingTime = 160f;
+    public float remainingTime = 160f;
     private bool timerRunning = true;
+    private TMP_Text timer;
 
+    private void Start()
+    {
+        timer = GameObject.Find("Timer").GetComponent<TMP_Text>();
+    
+    }
     void Update() {
         if (timerRunning) {
             remainingTime -= Time.deltaTime; // Decrement remaining time by deltaTime
@@ -13,7 +19,8 @@ public class Timer : MonoBehaviour {
             if (remainingTime <= 0) {
                 remainingTime = 0; // Ensure timer doesn't go negative
                 timerRunning = false; // Stop timer when it reaches 0
-               GameObject.Find("Main Camera").SendMessage("GameOver");   
+                timer.GetComponent<PlaySFX>().PlaySFXClip();
+                GameObject.Find("Main Camera").SendMessage("GameOver");   
             }
 
             string minutes = (Mathf.Floor(Mathf.Round(remainingTime) / 60)).ToString();
@@ -23,11 +30,9 @@ public class Timer : MonoBehaviour {
             if (seconds.Length == 1) { seconds = "0" + seconds; }
 
 
-            GameObject.Find("Timer").GetComponent<TMP_Text>().text = minutes + ":" + seconds;
+            timer.text = minutes + ":" + seconds;
         }
     }
 
-    public void StopTimer() {
-        timerRunning = false;
-    }
+    
 }
