@@ -28,5 +28,6 @@ public class StatusGameManager : MonoBehaviour {
     void PauseGame() {
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
+        GameObject.Find("Player").GetComponent<PlayerController>().enabled = false;
     }
 }
