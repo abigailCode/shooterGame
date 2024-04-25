@@ -28,5 +28,6 @@ public class StatusGameManager : MonoBehaviour {
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         _player.GetComponent<PlayerController>().enabled = false;
+        _player.GetComponent<FPController.FPController>().enabled = false;
     }
 }
