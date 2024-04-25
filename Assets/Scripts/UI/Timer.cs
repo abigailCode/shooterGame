@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour {
     bool _timerRunning = true;
     TMP_Text _timerText;
 
-    void Start() {
+    void Awake() {
         _timerText = GetComponent<TMP_Text>();
         SetTimerText();
     }
