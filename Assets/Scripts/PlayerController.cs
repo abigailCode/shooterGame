@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] Camera _playerCamera;
-    [SerializeField] GameObject _bulletPrefab;
     [SerializeField] Transform _firePoint;
     [SerializeField] int _bulletSpeed = 20;
     [SerializeField] LineRenderer _visualRay;

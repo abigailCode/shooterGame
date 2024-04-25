@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class StatusGameManager : MonoBehaviour {
     [SerializeField] GameObject _gameOverPanel, _gameWonPanel;
+    GameObject _player;
 
     void OnEnable() {
         InitGame.OnGameInit += StartTimer;
@@ -13,13 +14,11 @@ public class StatusGameManager : MonoBehaviour {
         InitGame.OnGameInit -= StartMovement;
     }
 
-    void StartTimer() {
-        GameObject.Find("HUD").GetComponent<Timer>().enabled = true;
-    }
+    void Start() { _player = GameObject.Find("Player"); }
 
-    void StartMovement() {
-        GameObject.Find("Player").GetComponent<CharacterController>().enabled = true;
-    }
+    void StartTimer() { GameObject.Find("Timer").GetComponent<Timer>().enabled = true; }
+
+    void StartMovement() { _player.GetComponent<CharacterController>().enabled = true; }
 
     void OnGameOver() { PauseGame(); _gameOverPanel.SetActive(true); }
 
@@ -28,6 +27,6 @@ public class StatusGameManager : MonoBehaviour {
     void PauseGame() {
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
-        GameObject.Find("Player").GetComponent<PlayerController>().enabled = false;
+        _player.GetComponent<PlayerController>().enabled = false;
     }
 }
