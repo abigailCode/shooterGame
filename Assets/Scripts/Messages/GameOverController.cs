@@ -1,22 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameOverController : MonoBehaviour
-{
+public class GameOverController : MonoBehaviour {
+    [SerializeField] string _message = "";
 
-    [SerializeField] string message = "";
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Target")
-        {
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Target") {
             GetComponent<PlaySFX>().PlaySFXClip();
-            GameObject.Find("Main Camera").SendMessage(message);
+            GameObject.Find("Main Camera").SendMessage(_message);
         }
     }
-
-
- 
 }

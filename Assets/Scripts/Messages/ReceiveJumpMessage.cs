@@ -1,12 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ReceiveJumpMessage : MonoBehaviour
-{
-    [SerializeField] float jumpForce = 10;
-    private void Jump()
-    {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+public class ReceiveJumpMessage : MonoBehaviour {
+    [SerializeField] float _jumpForce = 10;
+    Rigidbody _rigidbody;
+
+    void Start() {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    void Jump() {
+        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 }

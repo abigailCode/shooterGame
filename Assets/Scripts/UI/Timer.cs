@@ -1,38 +1,38 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class Timer : MonoBehaviour {
-    public float remainingTime = 160f;
-    private bool timerRunning = true;
-    private TMP_Text timer;
+    [SerializeField] float _remainingTime = 160f;
+    bool _timerRunning = true;
+    TMP_Text _timerText;
 
-    private void Start()
-    {
-        timer = GameObject.Find("Timer").GetComponent<TMP_Text>();
-    
+    void Start() {
+        _timerText = GetComponent<TMP_Text>();
+        SetTimerText();
     }
-    void Update() {
-        if (timerRunning) {
-            remainingTime -= Time.deltaTime; // Decrement remaining time by deltaTime
 
-            if (remainingTime <= 0) {
-                remainingTime = 0; // Ensure timer doesn't go negative
-                timerRunning = false; // Stop timer when it reaches 0
-                timer.GetComponent<PlaySFX>().PlaySFXClip();
+    void Update() {
+        if (_timerRunning) {
+            _remainingTime -= Time.deltaTime;
+
+            if (_remainingTime <= 0) {
+                _remainingTime = 0;
+                _timerRunning = false;
+                _timerText.GetComponent<PlaySFX>().PlaySFXClip();
                 GameObject.Find("Main Camera").SendMessage("GameOver");   
             }
-
-            string minutes = (Mathf.Floor(Mathf.Round(remainingTime) / 60)).ToString();
-            string seconds = (Mathf.Round(remainingTime) % 60).ToString();
-
-            if (minutes.Length == 1) { minutes = "0" + minutes; }
-            if (seconds.Length == 1) { seconds = "0" + seconds; }
-
-
-            timer.text = minutes + ":" + seconds;
+            SetTimerText();
         }
     }
 
+    void SetTimerText() {
+        string minutes = (Mathf.Floor(Mathf.Round(_remainingTime) / 60)).ToString();
+        string seconds = (Mathf.Round(_remainingTime) % 60).ToString();
+
+        if (minutes.Length == 1) { minutes = "0" + minutes; }
+        if (seconds.Length == 1) { seconds = "0" + seconds; }
+
+        _timerText.text = minutes + ":" + seconds;
+    }
     
 }

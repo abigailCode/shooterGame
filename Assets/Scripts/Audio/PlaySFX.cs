@@ -1,24 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySFX : MonoBehaviour
-{
-    [SerializeField] string sfxName;
-    string sfxPath = "SFX/";
+public class PlaySFX : MonoBehaviour {
+    [SerializeField] AudioClip _audioClip;
 
-    public void PlaySFXClip()
-    {
-        AudioClip sfxClip = Resources.Load<AudioClip>(sfxPath + sfxName);
-        StartCoroutine(PlaySFXCoroutine(sfxClip));
-    }
+    public void PlaySFXClip() { StartCoroutine(PlaySFXCoroutine()); }
 
-    IEnumerator PlaySFXCoroutine(AudioClip sfxClip)
-    {
+    IEnumerator PlaySFXCoroutine() {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = sfxClip;
+        audioSource.clip = _audioClip;
         audioSource.Play();
-        yield return new WaitForSeconds(sfxClip.length);
+        yield return new WaitForSeconds(_audioClip.length);
         Destroy(audioSource);
     }
 }

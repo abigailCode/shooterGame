@@ -1,54 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// --------------------------------------
-// SCRIPT PARA EL OBJECT POOL
-// --------------------------------------
-public class ObjectPool : MonoBehaviour
-{
-    // Crearemos una clase singleton para manejar el Pool de Objetos
+public class ObjectPool : MonoBehaviour {
+
     public static ObjectPool instance;
-    // Generamos la lista de objetos
-    private List<GameObject> pooledObjects = new List<GameObject>();
-    [SerializeField] int amountToPool = 20;
-    // Objeto que guardaremos en el pool
-    [SerializeField] GameObject bulletPrefab;
-    // Para convertirlo en Singleton
-    void Awake()
-    {
-        // Garantizamos que solo exista una instancia del ObjectPool
+    List<GameObject> _pooledObjects = new List<GameObject>();
+    [SerializeField] int _amountToPool = 20;
+    [SerializeField] GameObject _bulletPrefab;
+
+    void Awake() {
         if (instance == null) instance = this;
         else { Destroy(gameObject); return; }
     }
-    // Método que se ejecuta antes del primer frame
-    void Start()
-    {
-        // Generamos todos los objetos
-        for (int i = 0; i < amountToPool; i++)
-        {
-            GameObject obj = Instantiate(bulletPrefab); // Instanciamos el objeto
-            obj.SetActive(false); // Lo desactivamos
-            pooledObjects.Add(obj); // Añadimos el objeto a la lista
+
+    void Start() {
+        for (int i = 0; i < _amountToPool; i++) {
+            GameObject obj = Instantiate(_bulletPrefab);
+            obj.SetActive(false);
+            _pooledObjects.Add(obj);
         }
     }
 
-    // --------------------------------------
-    // MÉTODO GET POOLED OBJECT
-    // --------------------------------------
-    public GameObject GetPooledObject()
-    {
-        // Recorremos el pool
-        for (int i = 0; i < pooledObjects.Count; i++)
-        {
-            // Si el objeto no está activo en la jerarquía quiere decir
-            // que está disponible para su uso
-            if (!pooledObjects[i].activeInHierarchy)
-            {
-                return pooledObjects[i]; // Devolvemos el objeto disponible
-            }
-        }
-        return null; // Si todos los objetos están ocupados devolvemos nulo
+    public GameObject GetPooledObject() {
+        for (int i = 0; i < _pooledObjects.Count; i++)
+            if (!_pooledObjects[i].activeInHierarchy) return _pooledObjects[i];
+        return null;
     }
 
 }
