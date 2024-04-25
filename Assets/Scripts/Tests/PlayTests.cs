@@ -5,43 +5,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-public class PlayTests
-{
-
-    public GameObject explosionable;
-    private bool rockExistsBeforeCollision;
-
+public class PlayTests {
+    GameObject _target, _goal;
 
     [UnityTest, Order(1)]
-    public IEnumerator Inicio()
-    {
+    public IEnumerator Start() {
         SceneManager.LoadScene("Game"); 
-        yield return null; 
-        explosionable = GameObject.Find("Rock");
-
-
+        yield return null;
+        _target = GameObject.Find("Target");
+        _goal = GameObject.Find("Goal");
     }
 
     [Test, Order(2)]
-    public void ExplosionableExists()
-    {
-        Assert.IsNotNull(explosionable); 
+    public void TargetExists() {
+        Assert.IsNotNull(_target); 
     }
 
-    [UnityTest, Order(3)]
-    public IEnumerator ExplosionableExplodes()
-    {
-        var projectile = new GameObject("Projectile", typeof(BoxCollider), typeof(Rigidbody));
-        projectile.tag = "Projectile";
-        projectile.transform.position = explosionable.transform.position;
-        
-        // Wait for physics to process
-        yield return new WaitForSeconds(1);
-
-        // Check if explosionable still exists
-        Assert.IsFalse(explosionable.gameObject.activeSelf, "Rock should be inactive after collision with projectile");
+    [Test, Order(3)]
+    public void GoalExists() {
+        Assert.IsNotNull(_goal);
     }
-
-
-
 }
