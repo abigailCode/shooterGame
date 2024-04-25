@@ -7,10 +7,11 @@ public class Timer : MonoBehaviour {
     private bool timerRunning = true;
     private TMP_Text timer;
 
-    private void Start()
+    private void Awake()
     {
         timer = GameObject.Find("Timer").GetComponent<TMP_Text>();
-    
+        SetTimer();
+
     }
     void Update() {
         if (timerRunning) {
@@ -23,16 +24,21 @@ public class Timer : MonoBehaviour {
                 GameObject.Find("Main Camera").SendMessage("GameOver");   
             }
 
-            string minutes = (Mathf.Floor(Mathf.Round(remainingTime) / 60)).ToString();
-            string seconds = (Mathf.Round(remainingTime) % 60).ToString();
-
-            if (minutes.Length == 1) { minutes = "0" + minutes; }
-            if (seconds.Length == 1) { seconds = "0" + seconds; }
-
-
-            timer.text = minutes + ":" + seconds;
+           SetTimer();
         }
     }
 
+    public void SetTimer()
+    {
+        string minutes = (Mathf.Floor(Mathf.Round(remainingTime) / 60)).ToString();
+        string seconds = (Mathf.Round(remainingTime) % 60).ToString();
+
+        if (minutes.Length == 1) { minutes = "0" + minutes; }
+        if (seconds.Length == 1) { seconds = "0" + seconds; }
+
+        timer.text = minutes + ":" + seconds;
+    }
+   
     
+
 }

@@ -8,6 +8,8 @@ public class StatusGameManager : MonoBehaviour
 
     [SerializeField]  GameObject GameOverPanel;
     [SerializeField]  GameObject GameWonPanel;
+    [SerializeField]  GameObject Pointer;
+    [SerializeField]  GameObject target;
     public RawImage screenshotImage;
 
     private void OnEnable()
@@ -16,6 +18,7 @@ public class StatusGameManager : MonoBehaviour
         InitGame.OnGameInit += StartMovement;
         InitGame.OnGameInit += PlayMainTheme;
         InitGame.OnGameInit += AnimateTitle;
+        InitGame.OnGameInit += ActivatePointer;
     }
 
     private void OnDisable()
@@ -24,6 +27,7 @@ public class StatusGameManager : MonoBehaviour
         InitGame.OnGameInit -= StartMovement;
         InitGame.OnGameInit -= PlayMainTheme;
         InitGame.OnGameInit -= AnimateTitle;
+        InitGame.OnGameInit -= ActivatePointer;
     }
 
     private void Start()
@@ -52,6 +56,10 @@ public class StatusGameManager : MonoBehaviour
         GameObject.Find("Title").GetComponent<Animator>().SetBool("disappear", true);
     }
 
+    void ActivatePointer()
+    {
+        Pointer.SetActive(true);
+    }
 
     void GameOver()
     {
