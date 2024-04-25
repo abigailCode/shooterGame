@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2652ae496a87c1e45ac18db6ee93a9d4
+guid: b2377278a22b05140896188282da16dc
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Luckiest Guy
+  - Orbitron
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
