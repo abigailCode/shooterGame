@@ -9,7 +9,7 @@ public class StatusGameManager : MonoBehaviour
     [SerializeField]  GameObject GameOverPanel;
     [SerializeField]  GameObject GameWonPanel;
     [SerializeField]  GameObject Pointer;
-    [SerializeField]  GameObject target;
+  
     public RawImage screenshotImage;
 
     private void OnEnable()
