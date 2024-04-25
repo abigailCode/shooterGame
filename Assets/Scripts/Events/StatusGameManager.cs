@@ -6,15 +6,13 @@ using UnityEngine.UI;
 public class StatusGameManager : MonoBehaviour
 {
 
-    [SerializeField]  GameObject GameOverPanel;
-    [SerializeField]  GameObject GameWonPanel;
+    [SerializeField] GameObject GameOverPanel, GameWonPanel;
     public RawImage screenshotImage;
 
     private void OnEnable()
     {
         InitGame.OnGameInit += StartTimer;
         InitGame.OnGameInit += StartMovement;
-        InitGame.OnGameInit += PlayMainTheme;
         InitGame.OnGameInit += AnimateTitle;
     }
 
@@ -22,13 +20,7 @@ public class StatusGameManager : MonoBehaviour
     {
         InitGame.OnGameInit -= StartTimer;
         InitGame.OnGameInit -= StartMovement;
-        InitGame.OnGameInit -= PlayMainTheme;
         InitGame.OnGameInit -= AnimateTitle;
-    }
-
-    private void Start()
-    {
-        AudioManager.instance.PlayMusic("menu");
     }
 
     private void StartTimer()
@@ -39,12 +31,6 @@ public class StatusGameManager : MonoBehaviour
     void StartMovement()
     {
         GameObject.Find("Player").GetComponent<CharacterController>().enabled = true;
-    }
-
-    void PlayMainTheme()
-    {
-        AudioManager.instance.PlayMusic("main");
-      
     }
 
     void AnimateTitle()
