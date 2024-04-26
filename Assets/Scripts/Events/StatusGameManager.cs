@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -89,18 +90,46 @@ public class StatusGameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    //void CaptureScreenshot()
+    //{
+    //    string screenshotName = "screenshot.png";
+    //    string screenshotPath = Path.Combine(Application.persistentDataPath, "Screenshots");
+    //    if (!Directory.Exists(screenshotPath)) Directory.CreateDirectory(screenshotPath);
+    //    screenshotPath = Path.Combine(screenshotPath, screenshotName);
+    //    Debug.Log(screenshotPath);
+    //    ScreenCapture.CaptureScreenshot(screenshotPath);
+    //    StartCoroutine(LoadScreenshot(screenshotPath));
+    //}
+
+    //IEnumerator LoadScreenshot(string path)
+    //{
+    //    yield return new WaitForSecondsRealtime(0.2f);
+    //    byte[] fileData = System.IO.File.ReadAllBytes(path);
+    //    Texture2D texture = new Texture2D(Screen.width, Screen.height);
+    //    texture.LoadImage(fileData);
+    //    screenshotImage.texture = texture;
+    //}
+
     void CaptureScreenshot()
     {
-        string screenshotName = "screenshot.png";
-        ScreenCapture.CaptureScreenshot(screenshotName);
-        StartCoroutine(LoadScreenshot(screenshotName));
+        StartCoroutine(LoadScreenshot());
     }
 
-    IEnumerator LoadScreenshot(string path)
+    IEnumerator LoadScreenshot()
     {
-        yield return new WaitForSecondsRealtime(0.2f); 
-        Texture2D texture = new Texture2D(Screen.width, Screen.height);
-        texture.LoadImage(System.IO.File.ReadAllBytes(path));
+        // Espera un frame para que la captura de pantalla se complete
+        yield return new WaitForEndOfFrame();
+
+        // Crea una nueva textura con las dimensiones de la pantalla
+        Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+
+        // Lee los datos de la pantalla en la textura
+        texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        texture.Apply();
+
+        // Aplica la textura a la imagen del canvas
         screenshotImage.texture = texture;
     }
+
+
 }
